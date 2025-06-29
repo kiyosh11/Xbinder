@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Xbinder</h1>
+            <p>keyboard shortcuts for easy access ✨</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h3>Add New Keybind</h3>
+                <div class="form-group">
+                    <label for="keybindName">Custom Name:</label>
+                    <input type="text" id="keybindName" placeholder="e.g., My Custom Action" maxlength="50">
+                </div>
+                
+                <div class="form-group">
+                    <label for="keyCombo">Key Combination:</label>
+                    <input type="text" id="keyCombo" placeholder="e.g., ctrl+j or alt+r" readonly>
+                    <button id="recordKey" class="btn-record">Record Key</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="action">Action:</label>
+                    <select id="action">
+                        <option value="">Select an action...</option>
+                        <optgroup label="🐦 Basic Tweet Actions">
+                            <option value="like">❤️ Like current tweet</option>
+                            <option value="retweet">🔄 Retweet current tweet</option>
+                            <option value="reply">💬 Reply to current tweet</option>
+                            <option value="bookmark">🔖 Bookmark tweet</option>
+                            <option value="share">📤 Share tweet</option>
+                            <option value="quote">💭 Quote tweet</option>
+                            <option value="copy">🔗 Copy tweet link</option>
+                            <option value="copyText">📝 Copy tweet text</option>
+                            <option value="openThread">🧵 Open thread</option>
+                            <option value="openProfile">👤 Open user profile</option>
+                            <option value="viewImage">🖼️ View tweet image</option>
+                            <option value="analytics">📊 View analytics</option>
+                            <option value="embed">📋 Embed tweet</option>
+                        </optgroup>
+                        <optgroup label="🗑️ Tweet Management">
+                            <option value="delete">🗑️ Delete tweet</option>
+                            <option value="edit">✏️ Edit tweet</option>
+                            <option value="pin">📌 Pin tweet</option>
+                            <option value="hide">👁️ Hide tweet</option>
+                            <option value="report">🚨 Report tweet</option>
+                        </optgroup>
+                        <optgroup label="👥 User Actions">
+                            <option value="follow">➕ Follow user</option>
+                            <option value="unfollow">➖ Unfollow user</option>
+                            <option value="mute">🔇 Mute user</option>
+                            <option value="unmute">🔊 Unmute user</option>
+                            <option value="block">🚫 Block user</option>
+                            <option value="unblock">✅ Unblock user</option>
+                            <option value="addToList">📋 Add to list</option>
+                            <option value="viewLists">📋 View user lists</option>
+                            <option value="sendDM">💌 Send DM</option>
+                            <option value="viewFollowers">👥 View followers</option>
+                            <option value="viewFollowing">👥 View following</option>
+                        </optgroup>
+                        <optgroup label="🧭 Navigation">
+                            <option value="compose">✨ Compose new tweet</option>
+                            <option value="home">🏠 Go to Home</option>
+                            <option value="explore">🔍 Go to Explore</option>
+                            <option value="notifications">🔔 Go to Notifications</option>
+                            <option value="messages">💌 Go to Messages</option>
+                            <option value="bookmarks">🔖 Go to Bookmarks</option>
+                            <option value="lists">📋 Go to Lists</option>
+                            <option value="communities">🏘️ Go to Communities</option>
+                            <option value="profile">👤 Go to Profile</option>
+                            <option value="settings">⚙️ Go to Settings</option>
+                            <option value="search">🔍 Focus search bar</option>
+                            <option value="trending">📈 View trending</option>
+                            <option value="moments">⚡ View moments</option>
+                        </optgroup>
+                        <optgroup label="🎯 Tweet Navigation">
+                            <option value="nextTweet">⬇️ Next tweet</option>
+                            <option value="prevTweet">⬆️ Previous tweet</option>
+                            <option value="firstTweet">⏫ First tweet</option>
+                            <option value="lastTweet">⏬ Last tweet</option>
+                            <option value="randomTweet">🎲 Random tweet</option>
+                        </optgroup>
+                        <optgroup label="🎮 UI Controls">
+                            <option value="toggleMouseFollow">🖱️ Toggle mouse follow</option>
+                            <option value="switchNavMode">🎮 Switch navigation mode</option>
+                            <option value="toggleSidebar">📱 Toggle sidebar</option>
+                            <option value="toggleDarkMode">🌙 Toggle dark mode</option>
+                            <option value="fullscreen">🖥️ Toggle fullscreen</option>
+                            <option value="refresh">🔄 Refresh page</option>
+                            <option value="newTab">🆕 Open in new tab</option>
+                            <option value="closeTab">❌ Close tab</option>
+                        </optgroup>
+                        <optgroup label="⚡ Advanced Actions">
+                            <option value="autoScroll">🔄 Start auto scroll</option>
+                            <option value="stopAutoScroll">⏹️ Stop auto scroll</option>
+                            <option value="exportTweets">📤 Export visible tweets</option>
+                            <option value="screenshot">📸 Screenshot tweet</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <button id="addKeybind" class="btn-primary">Add Keybind</button>
+            </div>
+
+            <div class="section">
+                <h3>Visual Settings</h3>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label>Mouse Follow</label>
+                        <div class="toggle-switch" id="mouseFollowToggle"></div>
+                    </div>
+                    <div class="setting-item">
+                        <label>Show Indicators</label>
+                        <div class="toggle-switch active" id="indicatorsToggle"></div>
+                    </div>
+                    <div class="setting-item">
+                        <label>Auto Scroll</label>
+                        <div class="toggle-switch active" id="autoScrollToggle"></div>
+                    </div>
+                    <div class="setting-item">
+                        <label>Sound Effects</label>
+                        <div class="toggle-switch" id="soundEffectsToggle"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-top: 16px;">
+                    <label for="navMode">Navigation Mode:</label>
+                    <select id="navMode">
+                        <option value="keyboard">⌨️ Keyboard Only</option>
+                        <option value="mouse">🖱️ Mouse Only</option>
+                        <option value="both">🎮 Both</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="highlightStyle">Highlight Style:</label>
+                    <select id="highlightStyle">
+                        <option value="anime">🌸 Anime Gradient</option>
+                        <option value="neon">⚡ Neon Glow</option>
+                        <option value="minimal">🎯 Minimal</option>
+                        <option value="rainbow">🌈 Rainbow</option>
+                        <option value="cyberpunk">🤖 Cyberpunk</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="animationSpeed">Animation Speed:</label>
+                    <select id="animationSpeed">
+                        <option value="slow">🐌 Slow</option>
+                        <option value="normal">🚶 Normal</option>
+                        <option value="fast">🏃 Fast</option>
+                        <option value="instant">⚡ Instant</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Behavior Settings</h3>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label>Smart Navigation</label>
+                        <div class="toggle-switch active" id="smartNavToggle"></div>
+                    </div>
+                    <div class="setting-item">
+                        <label>Skip Promoted</label>
+                        <div class="toggle-switch active" id="skipPromotedToggle"></div>
+                    </div>
+                    <div class="setting-item">
+                        <label>Loop Navigation</label>
+                        <div class="toggle-switch" id="loopNavToggle"></div>
+                    </div>
+                    <div class="setting-item">
+                        <label>Confirm Actions</label>
+                        <div class="toggle-switch" id="confirmActionsToggle"></div>
+                    </div>
+                </div>
+
+                <div class="settings-grid" style="margin-top: 16px;">
+                    <div class="setting-item">
+                        <label>Quick Actions</label>
+                        <div class="toggle-switch active" id="quickActionsToggle"></div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 16px;">
+                    <label for="highlightOpacity">Highlight Opacity:</label>
+                    <input type="range" id="highlightOpacity" min="10" max="100" value="80" class="slider">
+                    <span class="slider-value">80%</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Current Keybinds</h3>
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span id="keybindCount">0 keybinds</span>
+                    </div>
+                </div>
+                <div class="keybind-search">
+                    <input type="text" id="searchKeybinds" placeholder="🔍 Search keybinds..." class="search-input">
+                </div>
+                <div id="keybindsList" class="keybinds-list">
+    
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Backup & Restore</h3>
+                <div class="button-group">
+                    <button id="exportSettings" class="btn-secondary">📤 Export All Settings</button>
+                    <button id="importSettings" class="btn-secondary">📥 Import Settings</button>
+                </div>
+                <div class="button-group" style="margin-top: 10px;">
+                    <button id="exportKeybinds" class="btn-secondary">📋 Export Keybinds Only</button>
+                    <button id="importKeybinds" class="btn-secondary">📋 Import Keybinds Only</button>
+                </div>
+                <div class="button-group" style="margin-top: 10px;">
+                    <button id="resetKeybinds" class="btn-secondary">🔄 Reset Keybinds</button>
+                    <button id="resetSettings" class="btn-secondary">⚙️ Reset Settings</button>
+                </div>
+                <button id="resetAll" class="btn-danger" style="margin-top: 10px;">🗑️ Reset Everything</button>
+            </div>
+
+            <div class="section">
+                <h3>Quick Setup</h3>
+                <p style="font-size: 12px; margin-bottom: 16px; opacity: 0.8;">
+                    Get started quickly with these preset keybind configurations:
+                </p>
+                <div class="button-group">
+                    <button id="setupBasic" class="btn-secondary">⚡ Basic Setup</button>
+                    <button id="setupAdvanced" class="btn-secondary">🚀 Advanced Setup</button>
+                </div>
+                <div class="button-group" style="margin-top: 10px;">
+                    <button id="setupGamer" class="btn-secondary">🎮 Gamer Setup</button>
+                    <button id="setupPowerUser" class="btn-secondary">💪 Power User Setup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="importFile" accept=".json" style="display: none;">
+    <script src="popup.js"></script>
+</body>
+</html>

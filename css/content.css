@@ -1,0 +1,261 @@
+.anime-tweet-highlight {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+    border: 3px solid transparent;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(2px);
+}
+.anime-tweet-highlight.style-anime {
+    background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #00d2d3);
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite, pulseGlow 2s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 20px rgba(255, 107, 157, 0.6),
+        0 0 40px rgba(196, 69, 105, 0.4),
+        0 0 60px rgba(248, 181, 0, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.anime-tweet-highlight.style-anime::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #00d2d3);
+    background-size: 400% 400%;
+    border-radius: 18px;
+    z-index: -1;
+    animation: gradientShift 3s ease infinite;
+    filter: blur(8px);
+}
+.anime-tweet-highlight.style-neon {
+    background: transparent;
+    border: 2px solid #00ffff;
+    box-shadow: 
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #00ffff,
+        inset 0 0 10px rgba(0, 255, 255, 0.1);
+    animation: neonPulse 2s ease-in-out infinite alternate;
+}
+.anime-tweet-highlight.style-minimal {
+    background: rgba(29, 155, 240, 0.1);
+    border: 2px solid #1d9bf0;
+    box-shadow: 0 0 10px rgba(29, 155, 240, 0.3);
+    animation: minimalPulse 3s ease-in-out infinite;
+}
+
+.anime-tweet-highlight.style-rainbow {
+    background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080);
+    background-size: 400% 400%;
+    animation: rainbowShift 2s linear infinite, pulseGlow 2s ease-in-out infinite alternate;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.anime-tweet-highlight.style-cyberpunk {
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+    background-size: 300% 300%;
+    border: 1px solid #ffffff;
+    animation: cyberpunkGlitch 1s ease-in-out infinite, gradientShift 4s ease infinite;
+    box-shadow: 
+        0 0 20px #ff00ff,
+        0 0 40px #00ffff,
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    filter: contrast(1.2) saturate(1.5);
+}
+
+.anime-tweet-highlight.speed-slow {
+    animation-duration: 6s, 4s !important;
+}
+
+.anime-tweet-highlight.speed-fast {
+    animation-duration: 1.5s, 1s !important;
+}
+
+.anime-tweet-highlight.speed-instant {
+    animation: none !important;
+    transition: none !important;
+}
+.anime-tweet-highlight.mouse-follow {
+    transition: all 0.1s ease-out;
+    position: fixed !important;
+    border-radius: 50% !important;
+}
+
+.anime-tweet-highlight.mouse-follow.style-anime {
+    animation: gradientShift 2s ease infinite, mouseGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+    0% { 
+        box-shadow: 
+            0 0 20px rgba(255, 107, 157, 0.6),
+            0 0 40px rgba(196, 69, 105, 0.4),
+            0 0 60px rgba(248, 181, 0, 0.3);
+    }
+    100% { 
+        box-shadow: 
+            0 0 30px rgba(255, 107, 157, 0.8),
+            0 0 60px rgba(196, 69, 105, 0.6),
+            0 0 90px rgba(248, 181, 0, 0.5);
+    }
+}
+
+@keyframes neonPulse {
+    0% { 
+        box-shadow: 
+            0 0 10px #00ffff,
+            0 0 20px #00ffff,
+            0 0 40px #00ffff;
+    }
+    100% { 
+        box-shadow: 
+            0 0 20px #00ffff,
+            0 0 40px #00ffff,
+            0 0 80px #00ffff;
+    }
+}
+
+@keyframes minimalPulse {
+    0%, 100% { 
+        box-shadow: 0 0 10px rgba(29, 155, 240, 0.3);
+        border-color: #1d9bf0;
+    }
+    50% { 
+        box-shadow: 0 0 20px rgba(29, 155, 240, 0.6);
+        border-color: #4da6ff;
+    }
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+}
+
+@keyframes cyberpunkGlitch {
+    0%, 90%, 100% { 
+        transform: translate(0);
+        filter: contrast(1.2) saturate(1.5);
+    }
+    5% { 
+        transform: translate(2px, 1px);
+        filter: contrast(1.5) saturate(2) hue-rotate(90deg);
+    }
+    10% { 
+        transform: translate(-1px, -2px);
+        filter: contrast(1.8) saturate(1.2) hue-rotate(180deg);
+    }
+}
+
+@keyframes mouseGlow {
+    0% { 
+        transform: scale(1);
+        filter: brightness(1) saturate(1);
+    }
+    100% { 
+        transform: scale(1.02);
+        filter: brightness(1.1) saturate(1.2);
+    }
+}
+.anime-nav-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.95), rgba(196, 69, 105, 0.95));
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 8px 32px rgba(255, 107, 157, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-100px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.anime-nav-indicator.show {
+    transform: translateY(0);
+}
+
+.anime-nav-indicator::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    border-radius: 27px;
+    z-index: -1;
+    filter: blur(4px);
+    opacity: 0.7;
+}
+.anime-tweet-counter {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, rgba(0, 210, 211, 0.95), rgba(248, 181, 0, 0.95));
+    color: white;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 6px 24px rgba(0, 210, 211, 0.3),
+        0 3px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+article[data-testid="tweet"] {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #ff6b9d, #c44569);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #ff8fb3, #d55a85);
+}
+@media (max-width: 768px) {
+    .anime-nav-indicator {
+        top: 10px;
+        right: 10px;
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    .anime-tweet-counter {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+}
